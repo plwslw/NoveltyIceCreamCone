@@ -2,3 +2,11 @@ box
 0 0 0 200 100 400
 ident
 display
+rotate
+x 4
+rotate
+y 4
+move
+150 200 0
+apply
+display

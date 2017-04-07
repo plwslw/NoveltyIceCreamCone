@@ -46,6 +46,8 @@ public class Script{
 	    else if (line.equals("display")){
 		c.draw (p);
 		System.out.println("edge matrix:\n" + c.edges);
+		System.out.println("triangle matrix:\n" + c.triangles);
+		
 		c.display();
 		c.clear();
 	    }

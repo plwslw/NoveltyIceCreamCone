@@ -378,15 +378,37 @@ public class Canvas {
 	addEdge(x, y, z1, x1, y, z1);
 	*/
 
-	addTriangle(x, y, z, x, y1, z, x1, y, z);
-	addTriangle(x, y, z, x1, y, z1, x, y, z1);
-	//addTriangle(x1, y, z, x, y1, z1, x1, y, z1);
-	addTriangle(x, y, z1, x, y1, z, x, y1, z1);
+	addTriangle(x, y, z, x1, y, z, x, y1, z);//F
+	addTriangle(x1, y1, z1, x1, y, z1, x, y1, z1);//B
+	addTriangle(x, y, z, x1, y, z1, x, y, z1);//D
+	addTriangle(x1, y1, z1, x, y1, z, x1, y1, z);//U
+	addTriangle(x, y, z1, x, y1, z1, x, y1, z);//L
+	addTriangle(x1, y, z, x1, y, z1, x1, y1, z);//R
     }
     
+    public void poly_sphere (int cx, int cy, int cz, int r, int steps){
+	double theta, phi;
+	int endi = 5; int endj = steps + 1;
+
+	double[][] x, y, z;
+	
+	for (int i=0;i<endi;i++){
+	    theta = (Math.PI * i)/steps;
+	    for (int j=0;j<endj;j++){
+		phi = (2 * Math.PI * j)/steps;
+
+		x[i][j] = r*Math.cos(phi) + cx;
+		y[i][j] = r*Math.cos(theta)*Math.sin(phi) + cy;
+		z[i][j] = r*Math.sin(theta)*Math.sin(phi) + cz;
+	    }
+	}
+
+	
+    }
     
     public void sphere (int cx, int cy, int cz, int r, int steps){
 	double theta, phi;
+	int endi = 5; int endj = steps + 1;
 
 	double x, y, z, x0, y0, z0;
 	
@@ -394,16 +416,17 @@ public class Canvas {
 	y0 = cy;
 	z0 = cz;
 
-	for (int i=0;i<steps;i++){
+	for (int i=0;i<endi;i++){
 	    theta = (Math.PI * i)/steps;
-	    for (int j=0;j<steps;j++){
+	    for (int j=0;j<endj;j++){
 		phi = (2 * Math.PI * j)/steps;
 
 		x = r*Math.cos(phi) + cx;
 		y = r*Math.cos(theta)*Math.sin(phi) + cy;
 		z = r*Math.sin(theta)*Math.sin(phi) + cz;
 
-		addEdge(x0, y0, z0, x, y, z);
+		
+		//addEdge(x0, y0, z0, x, y, z);
 
 		x0 = x; y0 = y; z0 = z;
 	    }
@@ -412,16 +435,16 @@ public class Canvas {
 
     public void torus (int cx, int cy, int cz, int r, int R, int steps){
 	double theta, phi;
-
+	int endi = steps + 1; int endj = steps + 1;
 	double x, y, z, x0, y0, z0;
 	
 	x0 = r + R + cx;
 	y0 = cy;
 	z0 = cz;
 
-	for (int i=0;i<steps;i++){
+	for (int i=0;i<endi;i++){
 	    theta = (2 * Math.PI * i)/steps;
-	    for (int j=0;j<steps;j++){
+	    for (int j=0;j<endj;j++){
 		phi = (2 * Math.PI * j)/steps;
 
 		x = r*Math.cos(theta)*Math.cos(phi) + R*Math.cos(theta) + cx;
@@ -436,11 +459,11 @@ public class Canvas {
     }
 
     public void sphere (int cx, int cy, int cz, int r){
-	sphere(cx, cy, cz, r, 34);
+	sphere(cx, cy, cz, r, 17);
     }
 
     public void torus (int cx, int cy, int cz, int r, int R){
-	torus(cx, cy, cz, r, R, 68);
+	torus(cx, cy, cz, r, R, 34);
     }
 
     

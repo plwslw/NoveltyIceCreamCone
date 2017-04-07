@@ -34,6 +34,7 @@ public class TriangleMatrix extends Matrix{
 	double a3 = (double) x3;
 	double b3 = (double) y3;
 	double c3 = (double) z3;
+	addTriangle(a1, b1, c1, a2, b2, c2, a3, b3, c3);
     }
 
     
